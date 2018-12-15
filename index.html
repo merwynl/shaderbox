@@ -2,6 +2,7 @@
 	<head>
 		<title>My first three.js app</title>
 		<style>
+			/* Sets the canvas fsize & margins */
 			body { margin: 0; }
 			canvas { width: 100%; height: 100% }
 		</style>
@@ -9,29 +10,44 @@
 	<body>
 		<script src="js/three.js"></script>
 		<script>
+			// Creates a scene object for our geometry & camera
 			var scene = new THREE.Scene();
+
+			// Creates a camera to that will render the scene
+			// The first value is the fov followed by the aspect ratio & clip plane
 			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 
+			// Instantiates a renderer, sets the size of the renderer & attaches it to our canvas
 			var renderer = new THREE.WebGLRenderer();
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild( renderer.domElement );
 
+			// Creates some basic geometry & materials
 			var geometry = new THREE.BoxGeometry( 1, 1, 1 );
 			var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 			var cube = new THREE.Mesh( geometry, material );
 			scene.add( cube );
 
+			// Sets the camera position
 			camera.position.z = 5;
 
+			// Creates a loop that causes the renderer to draw the scene everytime the screen is refreshed
 			var animate = function () {
+				// Using this means rendering is paused when user navigates to another browser tab
 				requestAnimationFrame( animate );
 
+				// Spin cube in X & Y
 				cube.rotation.x += 0.01;
 				cube.rotation.y += 0.01;
 
+				// Shift cube on x axis
+				cube.position.x = -1.0;
+
+				// Render the scene
 				renderer.render( scene, camera );
 			};
-
+			
+			// Run the function which renders calls on the scene geometry & animates
 			animate();
 		</script>
 	</body>
