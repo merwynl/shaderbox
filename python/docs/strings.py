@@ -57,3 +57,13 @@ print(len(phrase))
 # Prints out the value/character based on the assigned index
 phrase = "\"神様になった日\""
 print(phrase[1])
+
+# Returns the index value of the given supplied character
+phrase = "\"神様になった日\""
+print(phrase.index("日\""))
+
+# Replaces an existing value with a different one. Takes two arguments, first bring the target & second being the target value
+phrase = "\"神様になった日\""
+print(phrase.replace("日", "月"))
+
+
