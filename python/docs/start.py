@@ -9,3 +9,9 @@ print("彼女は" + str(age) + "歳だった")
 print("彼女も歌っているのが好きでした")
 print("しかし彼女は彼氏がいなかった")
 
+# Printing quotations using backslash
+print("\"神様になった日\"")
+
+# Printing normal backslash
+print("Σ/神様になった日")
+
