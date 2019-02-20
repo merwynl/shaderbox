@@ -9,4 +9,16 @@ def add_numbers(a, b):
 	print(a + b)
 
 
-add_numbers(3,2)
+# Function for printing a hello statement
+def hello():
+	print('Hello')
+
+
+def name(name, age):
+	print('こんにちは' + name + 'さん。君は' + age + '歳ですね')
+
+
+add_numbers(3, 2)
+hello()
+name('れをる', '二十三')
+
