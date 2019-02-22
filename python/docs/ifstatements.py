@@ -13,8 +13,10 @@ else:
     print('君は女の子だった')
 
 
-# Use an 'or' conditional statement if you want more than one variable to be passeed through
-# Only requires one of the provided conditions to be true
+"""
+Use an 'or' conditional statement if you want more than one variable to be paseed through"
+"Only requires one of the provided conditions to be true
+"""
 is_man = True
 is_tall = True
 
@@ -24,9 +26,11 @@ else:
     print('君は女性だったと背が高くない')
 
 
-# Use an 'and' conditional statement if you want more than one variable to be passeed through
-# Required all of the provided conditions to be true
-# ElseIf statement provides another level of condition.
+""" 
+Use an 'and' conditional statement if you want more than one variable to be passed through
+Required all of the provided conditions to be true
+ElseIf statement provides another level of condition.
+"""
 are_male = False
 are_tall = True
 

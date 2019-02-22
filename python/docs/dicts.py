@@ -1,13 +1,13 @@
 
-
 #####################
 # Dictionaries
 #####################
 
-
-# Dictionaries are similar to lists except that they use keys to point to specific values.
-# Dictionaries can also be stored/read from other more mutable formats like JSON
-# Dictionary keys need to be unique
+"""
+Dictionaries are similar to lists except that they use keys to point to specific values.
+Dictionaries can also be stored/read from other more mutable formats like JSON.
+Dictionary keys need to be unique.
+"""
 
 monthConversions = {
     'Jan': '一ヶ月',
