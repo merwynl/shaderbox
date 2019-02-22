@@ -7,7 +7,7 @@
 # Index in Python starts at 0
 singers = ['れをる', 'あいみょん', 'えなこ', 'みゆな']
 
-# Lists can take in more than one data type
+# Lists can take in more than one data typ
 numbers = ['れをる', str(2), True, str(1.256)]
 
 # Prints the entire list values
