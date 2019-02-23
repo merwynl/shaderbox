@@ -7,10 +7,10 @@
 singer_file = open('singers.txt', 'r', encoding='utf-8')
 
 # Write information to a file exiting inside a relative path
-open('.\\testData\\singers.txt', 'w')
+open('singers.txt', 'w')
 
 # Appends new information to an exiting file inside a relative path
-open('.\\testData\\singers.txt', 'a')
+open('singers.txt', 'a')
 
 # Full read write access to a file
 states = open('states.txt', 'r+')
