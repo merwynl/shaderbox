@@ -1,0 +1,99 @@
+// Attributes manipulated through a point wrangle
+// Color, Normal & Position are vectors and this are compatible for assigning to each other
+// VEX is based on C
+// Hit the 「node info」 button or middle mouse click on a node to see all available 「Point Attributes」
+
+
+// Color; 
+@Cd;
+
+// Normal
+@N;
+
+// Position
+@P;
+
+// Point number. TThis corresponds to each unique id on a point. This can be seen in the Geometry Spreadsheet
+@ptnum;
+
+// Refers to the total number of points on a single node.
+@numpt;
+
+// Sets the color to be the normal valus
+@Cd = @N;
+
+// Sets the color attr to be relative to the position. in world space.
+@Cd = @P;
+
+// Sets the color to be a subcomponent of a position
+@Cd = @P.x;
+
+// Sets the color to be a subcomponent of the normal value
+// If the scene has been set to be Y up then this line will create top down lighting
+@Cd = @N.y;
+
+// Basic Maths
+// VEX is based on C, thus simple arithmetic is easy to execute.
+
+// Sets color value to be x position + 3
+@Cd = @P.x + 3;
+
+// Sets color value to be z position -3
+@Cd = @P.z - 3;
+
+// Multiply values
+@Cd = @P.x-6*0.1;
+
+// Divide values
+@Cd = @P.x-(0.05/0.25);
+
+// Chain multiple arithmetic operations. In this case, the result we get is a diagonal
+@Cd = (@P.z-3) + (@P.x+3);
+
+// In essence, brackets can be used to control the order of operations
+@Cd = (@P.x+2) * 0.3;
+
+// You can also assign individual attr components, not just the entire attribute
+@Cd.x = @P.x-3 * 1.2;
+@Cd.y = @P.z+2;
+@Cd.z = @P.y;
+
+// Creates a ramp based on the point number divided by the total number of point. Note that this will not work because it`s trying to parse in an integer.
+@Cd = @ptnum/@numpt;
+
+// Converts the above line to be a float instead. This is known as casting
+@Cd = float (@ptnum)/@numpt;
+
+// We can swap out that seconed variable for an integer which will change where the whitepoint of a ramp occurs.
+@Cd = float (@ptnum)/1200;
+
+// You can also point to specific 「channels」to affect certain values without constantly updating the code. 
+// This is similar to how the「Paste Relative Reference」 function works.
+// You can create a slider from this by clicking the button to the right of the wrangle editor
+@Cd = float(@ptnum)/(ch('scale')*10);
+
+// Sets the point color value based on a sine wave function. The sine value is in radians
+@Cd = sin(@ptnum);
+
+// Changes the frequency of the wave repeat pattern.
+@Cd = sin(@ptnum/100);
+
+// ptnum will have to be cast to a float
+@Cd = sin(float(@ptnum)/100);
+
+// Creating a slider for this new sin function
+@Cd = sin(float(@ptnum)/ch('scale'));
+
+// It`s cleaner and better to break the line above into two separate lines instead
+float foo = float(@ptnum)/ch('scale');
+@Cd = sin(foo);
+
+// @ denotes an attribute which is data that sits on the geometry.
+// Like other programming languages, VEX also employs the use of variables to store temporary data or data that changes.
+// Use variables & use it often.
+float foo = float(@P.x)/ch('scale');
+@Cd = sin(foo);
+
+// @P are floats and therefore we don't need to cast it
+float foo = @P.x/ch('scale');
+@Cd = sin(foo);
