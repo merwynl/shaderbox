@@ -1,4 +1,4 @@
-Shader "Unlit/01_basic_shader"
+Shader "Unlit/shd_lighting"
 {
     Properties
     {
