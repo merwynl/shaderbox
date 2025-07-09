@@ -75,3 +75,7 @@ crashlytics-build.properties
 # Misc
 *.idea
 *.plastic
+
+# Sample Files
+/Assets/Shader Course/
+/Assets/Shader Course.meta
