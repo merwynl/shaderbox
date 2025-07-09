@@ -1,5 +1,6 @@
 Shader "Unlit/shd_basic"
 {
+    // Shaderlab  Portion
     Properties // 入力データ
     {
         _Value ("FloatValue", Float) = 1.0
@@ -10,6 +11,7 @@ Shader "Unlit/shd_basic"
         
         Pass
         {
+            //CG HLSL Portion
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -17,7 +19,7 @@ Shader "Unlit/shd_basic"
             #include "UnityCG.cginc"
 
             // Defining the float variable specified in the properties
-            float _FloatValue;
+            float _Value;
             
 
             struct meshdata // always per-mesh data
