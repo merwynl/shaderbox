@@ -79,3 +79,6 @@ crashlytics-build.properties
 # Sample Files
 /Assets/Shader Course/
 /Assets/Shader Course.meta
+Assets/UnityShaderBible/Resources/
+
+Assets/UnityShaderBible/Resources.meta
