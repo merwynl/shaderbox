@@ -183,20 +183,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "0dcd18b9751f48f2bfddb824bc436d01"
-                },
-                "m_SlotId": 0
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "27b0c3496a2c49f2890b19a77c482395"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "38ada28ec16b4df58bc146e1b8c1be49"
                 },
                 "m_SlotId": 6
@@ -477,6 +463,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "ae2b07a6da0340aabfda39f5a2146d7e"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "27b0c3496a2c49f2890b19a77c482395"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "aec885eaae264d7fb16aac3385584b45"
                 },
                 "m_SlotId": 0
@@ -659,8 +659,8 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": 348.0000915527344,
-            "y": 3889.999755859375
+            "x": -1155.0001220703125,
+            "y": 596.0
         },
         "m_Blocks": [
             {
@@ -676,8 +676,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 348.0000915527344,
-            "y": 4090.0
+            "x": -1155.0001220703125,
+            "y": 796.0
         },
         "m_Blocks": [
             {
@@ -883,7 +883,7 @@
     "m_ObjectId": "0569450c28ff46cab61c1284c39062e8",
     "m_Title": "Separately Offsets the UVs in each direction",
     "m_Position": {
-        "x": -3135.999755859375,
+        "x": -3136.0,
         "y": 2515.0
     }
 }
@@ -904,7 +904,7 @@
     "m_ObjectId": "076fc2f960d941a7a9676ef48fc5e2ee",
     "m_Title": "Tiles then offsets the UVs",
     "m_Position": {
-        "x": -3153.999755859375,
+        "x": -3154.0,
         "y": 3658.0
     }
 }
@@ -2621,10 +2621,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 0.0,
-            "y": 0.0,
-            "width": 0.0,
-            "height": 0.0
+            "x": -1223.0,
+            "y": 910.0000610351563,
+            "width": 200.0,
+            "height": 40.99993896484375
         }
     },
     "m_Slots": [
@@ -3570,7 +3570,7 @@
     "m_ObjectId": "811bc2ee035d4df7b241b9e9147fd327",
     "m_Title": "Texture is being tiled 6 times then darkened",
     "m_Position": {
-        "x": -3127.999755859375,
+        "x": -3128.0,
         "y": 1936.0
     }
 }
@@ -4451,8 +4451,8 @@
     "m_ObjectId": "a88c1323d2fb413eb73d9af86399eeb9",
     "m_Title": "Offsets the UV in one direction over a given time",
     "m_Position": {
-        "x": -3127.999755859375,
-        "y": 755.9998779296875
+        "x": -3128.0,
+        "y": 756.0
     }
 }
 
@@ -6101,8 +6101,8 @@
     "m_ObjectId": "eaea9ac772ab411d80d3cccb1e419711",
     "m_Title": "Globally offsets the UV coords in both UV over time by a fixed constant. The value from time is being added to the UV coord",
     "m_Position": {
-        "x": -3124.999755859375,
-        "y": -30.999969482421876
+        "x": -3125.0,
+        "y": -31.0
     }
 }
 

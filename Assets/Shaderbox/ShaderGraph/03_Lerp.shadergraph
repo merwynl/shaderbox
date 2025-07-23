@@ -316,6 +316,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "f32ad1528c674f28b8bd1977ef6dc25e"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "d076fef763574267bc4c9eeecb06ca80"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "fd8df93eceaa433187a15e762231d8e2"
                 },
                 "m_SlotId": 0
@@ -2663,7 +2677,7 @@
     "m_Title": "Blending two textures by a mask",
     "m_Position": {
         "x": -2297.0,
-        "y": 1724.000244140625
+        "y": 1724.0
     }
 }
 

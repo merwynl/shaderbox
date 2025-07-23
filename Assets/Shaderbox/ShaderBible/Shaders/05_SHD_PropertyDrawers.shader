@@ -1,8 +1,8 @@
-Shader"Shaderbox/USB/01_SHD_USB_SimpleColor"
+Shader"Shaderbox/Unlit/05_PropertyDrawers"
 {
     Properties
     {
-        // Specular
+        // Adds header
         [Header(Specular Properties)]
         _Specular ("Specular", Range(0.01, 1.0)) = 0.08
         _Brightness ("Brightness", Range(0.01, 1.0)) = 0.08
@@ -22,19 +22,19 @@ Shader"Shaderbox/USB/01_SHD_USB_SimpleColor"
         [Toggle] _Enable ("Enable Feature?", Float) = 0
         [KeywordEnum(Off, Red,Blue)] _KeywordEnum ("Color Options ?", Float) = 0
   
-//        // Num sliders
-//        _Specular ("Specular", Range(0.0, 1.0)) = 0.3
-//        _Factor ("Color Factor", Float) = 0.3
-//        _ColorID ("Color ID", Int) = 2
-//        
-//        //Color & vector 
-//        _Color ("Color", Color) = (1,1,1,1)
-//        _VPos ("Vertex Position", Vector) = (0,0,0,1)
-//        
-//        // Textures
-//        _MainTex ("Texture",2D) = "white" {}``
-//        _Reflection ("Reflection",Cube) = "black" {}
-//        _3DTexture ("3D Texture",3D) = "white" {}
+        // Num sliders
+        _SpecularSlider ("Specular", Range(0.0, 1.0)) = 0.3
+        _Factor ("Color Factor", Float) = 0.3
+        _ColorID ("Color ID", Int) = 2
+       
+        //Color & vector 
+        _Color ("Color", Color) = (1,1,1,1)
+        _VPos ("Vertex Position", Vector) = (0,0,0,1)1
+        
+        // Textures
+        _MainTex ("Texture",2D) = "white" {}``
+        _Reflection ("Reflection",Cube) = "black" {}
+        _3DTexture ("3D Texture",3D) = "white" {}
     }
     SubShader
     {

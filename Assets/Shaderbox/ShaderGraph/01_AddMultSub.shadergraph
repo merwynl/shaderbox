@@ -378,12 +378,26 @@
                 },
                 "m_SlotId": 0
             }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "ed484669e7bf43ff9e41167e3e17f34c"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "a3585351e7f44d1780b060c047e12ab2"
+                },
+                "m_SlotId": 0
+            }
         }
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": -1073.0001220703125,
-            "y": 1387.9998779296875
+            "x": -1060.9998779296875,
+            "y": 693.0
         },
         "m_Blocks": [
             {
@@ -399,8 +413,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": -1073.0001220703125,
-            "y": 1588.0
+            "x": -1060.9998779296875,
+            "y": 893.0000610351563
         },
         "m_Blocks": [
             {
@@ -886,8 +900,8 @@
     "m_ObjectId": "1d0e7de02cc245168a7461732197e2d1",
     "m_Title": "Takes away from existing values. Values passed into BC will not go under 0",
     "m_Position": {
-        "x": -2746.0,
-        "y": -459.0000305175781
+        "x": -2746.00048828125,
+        "y": -459.000244140625
     }
 }
 
@@ -897,8 +911,8 @@
     "m_ObjectId": "1e3776072efa467d8696bba995d0508c",
     "m_Title": "Adds to existing values. Values passed into BC will be clamped at 1",
     "m_Position": {
-        "x": -2748.0,
-        "y": -33.000030517578128
+        "x": -2748.000244140625,
+        "y": -33.0
     }
 }
 
@@ -1676,8 +1690,8 @@
     "m_ObjectId": "5e7f0d7a00d34d2c839ad55dc1f58987",
     "m_Title": "Shifts the value range from 0-1 to 0-2. Then subtracts to shift the range from 0-2 to -1-1.",
     "m_Position": {
-        "x": -2746.0,
-        "y": 1413.9998779296875
+        "x": -2746.00048828125,
+        "y": 1414.000244140625
     }
 }
 
@@ -2944,8 +2958,8 @@
     "m_ObjectId": "bdbfdf15f9754345b3ebe79022b6ee0f",
     "m_Title": "Inverts the incoming values",
     "m_Position": {
-        "x": -2748.0,
-        "y": -1210.9998779296875
+        "x": -2748.000244140625,
+        "y": -1211.000244140625
     }
 }
 
@@ -2971,7 +2985,7 @@
     "m_Title": "Opposite of the above. If the incoming value range is -1-1. This shift the range on the lower bracket to 0 becauise -1 mult by 0.5 then + 0.5 = 0",
     "m_Position": {
         "x": -2773.0,
-        "y": 1923.0
+        "y": 1923.0003662109375
     }
 }
 
@@ -3029,8 +3043,8 @@
     "m_ObjectId": "c4fb98545a3a4501988483a05219b060",
     "m_Title": "Values above 1 will be brighter. Mul by a number lower than 1 will darken a value because the resulting value will be smaller than the normalizes value",
     "m_Position": {
-        "x": -2747.0,
-        "y": 386.9999694824219
+        "x": -2747.00048828125,
+        "y": 387.00030517578127
     }
 }
 
@@ -3176,8 +3190,8 @@
     "m_ObjectId": "da61360783f34d18b3c4915982bdcde5",
     "m_Title": "Values above 1 will be darker. Div by a number lower than 1 will brighten a value. Dividing by 0.5 is equivalent to Mul by 1.5",
     "m_Position": {
-        "x": -2746.0,
-        "y": 833.9999389648438
+        "x": -2746.00048828125,
+        "y": 834.0
     }
 }
 

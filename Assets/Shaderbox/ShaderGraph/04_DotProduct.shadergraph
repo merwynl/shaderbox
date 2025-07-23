@@ -516,6 +516,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "9b097969c8ab4856b569851f0ae927da"
+                },
+                "m_SlotId": 1
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "8377304542c04ceab99b295864ef74b3"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "9bda8725013b46738c8122876315b71a"
                 },
                 "m_SlotId": 0
@@ -600,8 +614,8 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": -843.9999389648438,
-            "y": 831.9998779296875
+            "x": -1152.0,
+            "y": -560.9999389648438
         },
         "m_Blocks": [
             {
@@ -617,8 +631,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": -843.9999389648438,
-            "y": 1064.9998779296875
+            "x": -1152.0,
+            "y": -327.9999694824219
         },
         "m_Blocks": [
             {
@@ -1965,8 +1979,8 @@
     "m_ObjectId": "4d1e704efa174ce49498253deec0ac63",
     "m_Title": "Using the a dot product node to create a fresnel effect. Brightest surface area will be view direction and gets darker as it turns away from the view vector",
     "m_Position": {
-        "x": -3058.000244140625,
-        "y": 690.9996948242188
+        "x": -3058.0,
+        "y": 691.0001220703125
     }
 }
 
@@ -2800,8 +2814,8 @@
     "m_ObjectId": "792937a3c59c4e558ef042c34f76c902",
     "m_Title": "Manually calculating the dot product",
     "m_Position": {
-        "x": -3074.000244140625,
-        "y": 2936.0
+        "x": -3073.99951171875,
+        "y": 2936.00048828125
     }
 }
 
@@ -3094,7 +3108,7 @@
     "m_ObjectId": "88149ea97701465caba272b258825110",
     "m_Title": "Using a dot product to channel isolate",
     "m_Position": {
-        "x": -3045.999755859375,
+        "x": -3045.99951171875,
         "y": 2198.0
     }
 }
@@ -3460,8 +3474,8 @@
     "m_ObjectId": "9c433b3eee5c499c8f7a18ede81e8aab",
     "m_Title": "Fresnel using a dot product",
     "m_Position": {
-        "x": -2970.0,
-        "y": -412.00006103515627
+        "x": -2969.99951171875,
+        "y": -412.0001220703125
     }
 }
 
@@ -3472,7 +3486,7 @@
     "m_Title": "Fresnel using a dot product",
     "m_Position": {
         "x": -3007.0,
-        "y": 152.99993896484376
+        "y": 153.0
     }
 }
 
