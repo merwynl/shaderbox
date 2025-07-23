@@ -32,7 +32,7 @@ Shader"Shaderbox/USB/01_SHD_USB_SimpleColor"
 //        _VPos ("Vertex Position", Vector) = (0,0,0,1)
 //        
 //        // Textures
-//        _MainTex ("Texture",2D) = "white" {}
+//        _MainTex ("Texture",2D) = "white" {}``
 //        _Reflection ("Reflection",Cube) = "black" {}
 //        _3DTexture ("3D Texture",3D) = "white" {}
     }
