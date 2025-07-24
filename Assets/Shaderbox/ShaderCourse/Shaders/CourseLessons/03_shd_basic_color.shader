@@ -23,7 +23,7 @@ Shader "Unlit/shd_basic_color"
             {
                 float4 vertex : POSITION; // vertex position
                 float3 normals : NORMAL;
-                // float3 tangent : TANGENT; //tangent normals
+                // float3 tangent : TANGENT; //tangent norma\ls
                 // float4 color : COLOR; // vertex colours
                 float2 uv0 : TEXCOORD0; // uv0 diffuse/normal map textures
             };
@@ -43,6 +43,11 @@ Shader "Unlit/shd_basic_color"
 
             float4 frag (Interpolators i) : SV_Target
             {
+                // Swizzling
+                float4 myValue;
+                float2 otherValue = myValue.xy;
+                float2 otherValue2 = myValue.bg;
+                
                 // _FloatValue = (1,0,0,1);
                 return _Color;
             }

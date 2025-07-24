@@ -21,9 +21,6 @@ Shader "ShaderBox/Unlit/07_SHD_MpdEnum"
                 #pragma vertex vert
                 #pragma fragment frag
     
-                // Declare preprocessor
-                #pragma multi_compile _OPTIONS_OFF _OPTIONS_RED _OPTIONS_BLUE
-    
                 #include "UnityCG.cginc"
     
                 sampler2D _MainTex;
@@ -37,7 +34,7 @@ Shader "ShaderBox/Unlit/07_SHD_MpdEnum"
     
                 struct interpolators
                 {
-                    float2 uv : TEXCOORD0;
+                    // float2 uv : TEXCOORD0;
                     float4 vertex : SV_POSITION;
                 };
     
@@ -49,7 +46,6 @@ Shader "ShaderBox/Unlit/07_SHD_MpdEnum"
                 }
                 fixed4 frag (interpolators i) : SV_Target
             {
-                // Returns a basic color
                 return _Color;
             }
                 

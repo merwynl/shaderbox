@@ -2,8 +2,8 @@ Shader "ShaderBox/Unlit/05_SHD_ToggleDrawers" {
     Properties
     {
         // Declaring shader properties
-        _MainTex("Texture", 2D) = "white"{}
-        _Color("Color", Color) = (1,1,1,1)
+        _Color1("Color A", Color) = (1,0,0,1)
+        _Color2("Color B", Color) = (0,0,1,1)
         [Toggle] _Enable ("Enabled", Float) = 0
     }
     SubShader
@@ -21,8 +21,8 @@ Shader "ShaderBox/Unlit/05_SHD_ToggleDrawers" {
 
             #include "UnityCG.cginc"
 
-            sampler2D _MainTex;
-            float4 _Color;
+            float4 _Color1;
+            float4 _Color2;
 
             struct meshdata
             {
@@ -44,13 +44,13 @@ Shader "ShaderBox/Unlit/05_SHD_ToggleDrawers" {
             }
             half4 frag (interpolators i) : SV_Target
             {
-                half4 col = tex2D(_MainTex, i.uv);
+                half4 col = _Color2;
 
                 // Setting the condition for the toggle
                 #if _ENABLE_ON
                     return col;
                 #else
-                    return col * _Color;
+                    return col * _Color1;
                 #endif
             }
             

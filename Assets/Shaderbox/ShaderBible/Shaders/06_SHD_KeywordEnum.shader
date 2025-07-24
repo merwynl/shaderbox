@@ -45,7 +45,7 @@ Shader "ShaderBox/Unlit/06_SHD_KeywordEnum"
                 }
                 half4 frag (interpolators i) : SV_Target
                 {
-                    half4 col = tex2D(_MainTex, i.uv);
+                    half4 col = float4(0,0,1,1);
 
                     // Sets condition for different options
                     #if _OPTIONS_OFF

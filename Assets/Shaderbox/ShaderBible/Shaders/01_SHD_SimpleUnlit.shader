@@ -14,6 +14,7 @@ Shader "ShaderBox/Unlit/01_SHD_SimpleUnlit" // Defines the inspector path
 
         Pass
         {
+            // All functions
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -46,7 +47,7 @@ Shader "ShaderBox/Unlit/01_SHD_SimpleUnlit" // Defines the inspector path
                 return o;
             }
 
-            // Fragment shader
+            // Fragment shader - Fixed data types don't compile with HLSL
             fixed4 frag (interpolators i) : SV_Target
             {
                 // sample the texture

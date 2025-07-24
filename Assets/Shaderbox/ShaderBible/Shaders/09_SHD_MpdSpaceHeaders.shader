@@ -30,9 +30,6 @@ Shader "ShaderBox/Unlit/09_SHD_MpdSpaceHeaders"
                 #pragma vertex vert
                 #pragma fragment frag
     
-                // Declare preprocessor
-                #pragma multi_compile _OPTIONS_OFF _OPTIONS_RED _OPTIONS_BLUE
-    
                 #include "UnityCG.cginc"
     
                 float _Brightness;
@@ -47,7 +44,7 @@ Shader "ShaderBox/Unlit/09_SHD_MpdSpaceHeaders"
     
                 struct interpolators
                 {
-                    float2 uv : TEXCOORD0;
+                    // float2 uv : TEXCOORD0;
                     float4 vertex : SV_POSITION;
                 };
     
@@ -59,7 +56,6 @@ Shader "ShaderBox/Unlit/09_SHD_MpdSpaceHeaders"
                 }
                 fixed4 frag (interpolators i) : SV_Target
             {
-                // Returns a basic color
                 return _BaseColor;
             }
                 
