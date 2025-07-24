@@ -20,12 +20,14 @@ Shader "ShaderBox/Unlit/01_SHD_SimpleUnlit" // Defines the inspector path
 
             #include "UnityCG.cginc"
 
+            // Mesh data
             struct meshdata
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
             };
 
+            // Interpolators
             struct interpolators
             {
                 float2 uv : TEXCOORD0;
@@ -35,6 +37,7 @@ Shader "ShaderBox/Unlit/01_SHD_SimpleUnlit" // Defines the inspector path
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
+            // Vertex shader
             interpolators vert (meshdata v)
             {
                 interpolators o;
@@ -43,6 +46,7 @@ Shader "ShaderBox/Unlit/01_SHD_SimpleUnlit" // Defines the inspector path
                 return o;
             }
 
+            // Fragment shader
             fixed4 frag (interpolators i) : SV_Target
             {
                 // sample the texture

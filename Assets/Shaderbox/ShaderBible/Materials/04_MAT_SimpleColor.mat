@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 04_MAT_SimpleColor
-  m_Shader: {fileID: -6465566751694194690, guid: 83e44a2b31dafd54299b9b08b0386988, type: 3}
+  m_Shader: {fileID: 4800000, guid: 279ac918c2e04489e8d8db22f00b5d15, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []

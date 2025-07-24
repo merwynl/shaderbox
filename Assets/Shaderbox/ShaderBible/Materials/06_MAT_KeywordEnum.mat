@@ -7,14 +7,17 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 02_MAT_ShaderFunction
-  m_Shader: {fileID: 4800000, guid: a32a872bb42e74349a4b3fc3ef7eacab, type: 3}
+  m_Name: 06_MAT_KeywordEnum
+  m_Shader: {fileID: 4800000, guid: 051711c95505fb14f9504ba3dec1e9c9, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _OPTIONS_BLUE
   m_InvalidKeywords:
   - _ENABLE_ON
   - _KEYWORDENUM_RED
+  - _OPTION_BLUE
+  - _TOGGLEFEATURE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
@@ -121,6 +124,8 @@ Material:
     - _KeywordEnum: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
+    - _Option: 2
+    - _Options: 2
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -132,11 +137,13 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
+    - _Toggle: 0
+    - _ToggleFeature: 1
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.8679245, g: 0.09416164, b: 0.09416164, a: 1}
+    - _Color: {r: 1, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 0, b: 0.0992074, a: 1}

@@ -3,11 +3,11 @@ Shader "ShaderBox/Unlit/03_SHD_ShaderlabProperties" {
     {
 
         // Declaring shader properties
-        _MainTex ("Texture", 2D) = "white" {}
         _BaseColor("Color", Color) = (1,1,1,1)
         _Specular("Specular", Range(0.0, 1.1)) = 0.3 // name ("display name", Range(min, max)) = defaultValue
         _Factor("Color Factor", Float) = 0.3 // name ("display name", Float) = defaultValue
         _Cid("Color ID", Int) = 2 // name ("display name", Int) = defaultValue
+        _MainTex ("Texture", 2D) = "white" {}
         _Reflection("Reflection", Cube) = "defaultReflectionCube" // Cubemap
         _3DTexture ("3D Texture", 3D) = "defaultColorTexture"
     }

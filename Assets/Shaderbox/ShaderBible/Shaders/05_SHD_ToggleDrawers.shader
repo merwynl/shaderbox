@@ -1,9 +1,10 @@
-Shader "ShaderBox/Unlit/04_SHD_SimpleColor"
-{
+Shader "ShaderBox/Unlit/05_SHD_ToggleDrawers" {
     Properties
     {
         // Declaring shader properties
+        _MainTex("Texture", 2D) = "white"{}
         _Color("Color", Color) = (1,1,1,1)
+        [Toggle] _Enable ("Enabled", Float) = 0
     }
     SubShader
     {
@@ -15,8 +16,12 @@ Shader "ShaderBox/Unlit/04_SHD_SimpleColor"
             #pragma vertex vert
             #pragma fragment frag
 
+            // Declare preprocessor - Required for enabling shader variants basedon a condition
+            #pragma shader_feature _ENABLE_ON
+
             #include "UnityCG.cginc"
 
+            sampler2D _MainTex;
             float4 _Color;
 
             struct meshdata
@@ -37,10 +42,16 @@ Shader "ShaderBox/Unlit/04_SHD_SimpleColor"
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 return o;
             }
-            fixed4 frag (interpolators i) : SV_Target
+            half4 frag (interpolators i) : SV_Target
             {
-                // Returns a basic color
-                return _Color;
+                half4 col = tex2D(_MainTex, i.uv);
+
+                // Setting the condition for the toggle
+                #if _ENABLE_ON
+                    return col;
+                #else
+                    return col * _Color;
+                #endif
             }
             
             ENDCG

@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 03_MAT_ShaderlabProperties
-  m_Shader: {fileID: -6465566751694194690, guid: 83e44a2b31dafd54299b9b08b0386988, type: 3}
+  m_Shader: {fileID: 4800000, guid: 696564a2de59345a282019ed26a4d552, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -103,6 +103,7 @@ Material:
     - _BlendModePreserveSpecular: 1
     - _Brightness: 0.903
     - _BumpScale: 1
+    - _Cid: 2
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _ColorID: 2
