@@ -1,4 +1,4 @@
-Shader"Unlit/shd_clamping"
+Shader"ShaderCourse/shd_clamping"
 {
     Properties // 入力データ
     {

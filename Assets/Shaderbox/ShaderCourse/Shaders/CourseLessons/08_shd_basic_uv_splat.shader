@@ -1,4 +1,4 @@
-Shader"Unlit/shd_basic_color_uv_splat"
+Shader"ShaderCourse/shd_basic_color_uv_splat"
 {
     Properties // 入力データ
     {

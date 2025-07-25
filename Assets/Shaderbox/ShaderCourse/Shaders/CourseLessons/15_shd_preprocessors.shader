@@ -1,4 +1,4 @@
-Shader"Unlit/shd_preprocessors"
+Shader"ShaderCourse/shd_preprocessors"
 {
     Properties // 入力データ
     {
@@ -53,7 +53,7 @@ Shader"Unlit/shd_preprocessors"
             float4 frag (Interpolators i) : SV_Target
             {
                 // Guarantees a repetitive pattern. Starts at 1, goes down to -1 then back up to 1
-                float t = sin(i.uv.x * TAU * 5) * 0.5 + 0.5; // * 0.5 expands the range, + 0.5 shifts the range 
+                float t = sin(i.uv.x * TAU * 10) * 0.5 + 0.5; // * 0.5 expands the range, + 0.5 shifts the range 
                 return t;
                 float4 outColor = lerp(_Color_A, _Color_B, t);
             }

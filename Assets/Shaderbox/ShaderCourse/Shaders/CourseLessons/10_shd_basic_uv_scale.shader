@@ -1,4 +1,4 @@
-Shader"Unlit/shd_basic_color_uv_scale"
+Shader"ShaderCourse/shd_basic_color_uv_scale"
 {
     Properties // 入力データ
     {

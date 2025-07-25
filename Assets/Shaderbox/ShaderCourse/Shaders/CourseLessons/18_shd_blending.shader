@@ -1,4 +1,4 @@
-Shader"ShaderCourse/shd_waves"
+Shader"ShaderCourse/shd_blending"
 {
     Properties // 入力データ
     {
@@ -9,10 +9,21 @@ Shader"ShaderCourse/shd_waves"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags {
+            "RenderType"="Transparent"
+            "Queue" = "Transparent"
+        }
         
         Pass
         {
+            
+            ZWrite Off
+            
+            // Blend mode Syntax - Blend(Src Dst) - Type of operator happens behind the scene
+            Blend One One // Additive blend mode
+            
+            Blend DstColor Zero // Multiply
+            
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -52,21 +63,15 @@ Shader"ShaderCourse/shd_waves"
             
             float4 frag (Interpolators i) : SV_Target
             {
-                // Data types in shaders implicit cast from a float to a float4 automatically through swizzling.
-
-                // Triangle wave using absolute value
-                // float t = abs(frac(i.uv.x * 5) * 2 - 1);
+                // Zigzag wave
+                float xOffset = cos(i.uv.x * TAU * 8 ) * 0.01;
                 
-                // Cosine wave
-                float t = cos(i.uv.x * 25);
-                
-                // Sine wave
-                // float t = sin(i.uv.x * 25);
+                // Adding _Time to pattern
+                float t = cos((i.uv.y + xOffset + _Time.y * 0.1)* TAU * 5) * 0.5 + 0.5;
 
+                t *= 1-i.uv.y;
+                
                 return t;
-                
-                // float2 t = cos(i.uv.xy * TAU * 2) * 0.5 + 0.5;
-                // return float4(t,0,1);
                 
             }
             ENDCG

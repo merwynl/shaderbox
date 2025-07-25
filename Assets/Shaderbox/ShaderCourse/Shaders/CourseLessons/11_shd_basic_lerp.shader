@@ -1,4 +1,4 @@
-Shader"Unlit/shd_basic_lerp"
+Shader"ShaderCourse/shd_basic_lerp"
 {
     Properties // 入力データ
     {

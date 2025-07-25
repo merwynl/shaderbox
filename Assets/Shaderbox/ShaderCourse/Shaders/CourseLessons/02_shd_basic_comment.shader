@@ -1,4 +1,4 @@
-Shader "Unlit/shd_basic_comment"
+Shader "ShaderCourse/shd_basic_comment"
 {
     Properties // 入力データ
     {
@@ -26,32 +26,35 @@ Shader "Unlit/shd_basic_comment"
             // sampler2D _MainTex;
             // float4 _MainTex_ST;
 
-            struct meshdata // always per-mesh data
+            struct meshdata // always per-vertex mesh data
             {
                 // Mesh data usually carries float4. float count is dependant on data type
                 // Incoming mesh data from the shader or vertex streams
                 // UV coords would often be used for things unrelated to texture mapping
                 // UV coords, can be used for almost anything
-                float4 vertex : POSITION; // vertex position
-                float3 normals : NORMAL;
-                float3 tangent : TANGENT; //tangent normals
+                float4 vertex : POSITION; // local spadce vertex position
+                float3 normals : NORMAL; // local space normal direction
+                float3 tangent : TANGENT; //tangent normal direction (xyz) tangent sign(w)
                 float4 color : COLOR; // vertex colours
                 float2 uv0 : TEXCOORD0; // uv0 diffuse/normal map textures
                 float2 uv1 : TEXCOORD1; // uv1 coords for lightmapping
                 float2 uv2 : TEXCOORD1; // uv2 coords for different alpha mapping
             };
-
-            struct Interpolators // For data that gets passed from the vert shader to the frag shader
+            
+            // For data that gets passed from the vert shader to the frag shader
+            // This will blend across the triangle
+            struct Interpolators 
             {
-                float4 vertex : SV_POSITION; // clip space positions
-                // float2 uv : TEXCOORD0; //
+                float4 vertex : SV_POSITION; // clip space position
+                float2 uv : TEXCOORD0; //
                 // UNITY_FOG_COORDS(1)
             };
 
             Interpolators vert (meshdata v)
             {
                 Interpolators o; // Defines var name for output
-                o.vertex = UnityObjectToClipPos(v.vertex); // Converts from local space to clip space 
+                o.vertex = UnityObjectToClipPos(v.vertex); // Converts from local space to clip-space
+                o.uv = v.uv0; // (v.uv0 + _Offset) * _Scale; // pass through
                 // o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 // UNITY_TRANSFER_FOG(o,o.vertex);
                 return o; // Returns result from interpolator

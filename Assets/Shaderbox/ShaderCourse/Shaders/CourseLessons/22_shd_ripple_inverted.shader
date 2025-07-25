@@ -1,4 +1,4 @@
-Shader"ShaderCourse/shd_waves"
+Shader"ShaderCourse/shd_ripples_inverted"
 {
     Properties // 入力データ
     {
@@ -6,10 +6,14 @@ Shader"ShaderCourse/shd_waves"
         _Color_B ("Color B", Color) = (1,1,1,1)
         _ColorStart ("Color Start", Range(0,1)) = 0
         _ColorEnd ("Color End", Range(0,1)) = 1
+        _WaveAmp ("Wave Amplitude", Range(0,1)) = 0.1
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags {
+            "RenderType"="Opaque"
+            "Queue" = "Geometry"
+        }
         
         Pass
         {
@@ -26,6 +30,7 @@ Shader"ShaderCourse/shd_waves"
             float4 _Color_B;
             float _ColorStart;
             float _ColorEnd;
+            float _WaveAmp;
             
             struct meshdata // always per-mesh data
             {
@@ -44,30 +49,41 @@ Shader"ShaderCourse/shd_waves"
             Interpolators vert (meshdata v)
             {
                 Interpolators o;
+
+                // float wave = cos((v.uv0.y - _Time.y * 0.1)* TAU * 5);
+                // float wave2 = cos((v.uv0.x - _Time.y * 0.1)* TAU * 5);
+
+                // v.vertex.y = wave * wave2 * _WaveAmp;
+                
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.normal = UnityObjectToWorldNormal(v.normals); // just passing through data
                 o.uv =  v.uv0; 
                 return o;
             }
+        
+            float GetWave(float2 uv)
+            {
+                // Create gradial gradiant using radial coordinate
+                float2 uvs_centered = uv * 2 - 1;
+                float radial_distance = length(uvs_centered);
+                float4 circle = (radial_distance.xxx,1);
+                
+                // return float4(radial_distance.xxx,1);
+
+                // Create ripple wave effect
+                float wave = cos((radial_distance - _Time.y * 0.1)* TAU * 5) * 0.5 + 0.5;
+
+                // Invert
+                wave *= 1-radial_distance;
+                
+                
+                return wave;
+            }
+            
             
             float4 frag (Interpolators i) : SV_Target
             {
-                // Data types in shaders implicit cast from a float to a float4 automatically through swizzling.
-
-                // Triangle wave using absolute value
-                // float t = abs(frac(i.uv.x * 5) * 2 - 1);
-                
-                // Cosine wave
-                float t = cos(i.uv.x * 25);
-                
-                // Sine wave
-                // float t = sin(i.uv.x * 25);
-
-                return t;
-                
-                // float2 t = cos(i.uv.xy * TAU * 2) * 0.5 + 0.5;
-                // return float4(t,0,1);
-                
+                return GetWave(i.uv);
             }
             ENDCG
         }

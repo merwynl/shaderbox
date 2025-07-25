@@ -1,10 +1,10 @@
-Shader"Unlit/shd_basic_color_uv_offset"
+Shader"ShaderCourse/shd_basic_color_uv_offset"
 {
     Properties // 入力データ
     {
         _Color ("Color", Color) = (1,1,1,1)
         _Scale ("UV_Scale", Float) = 1
-        _Offset ("UV_Offset", Float) = 0
+        _Offsew ("UV_Offset", Float) = 0
     }
     SubShader
     {

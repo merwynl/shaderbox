@@ -1,4 +1,4 @@
-Shader"ShaderCourse/shd_waves"
+Shader"ShaderCourse/shd_pattern_manipulation"
 {
     Properties // 入力データ
     {
@@ -52,21 +52,19 @@ Shader"ShaderCourse/shd_waves"
             
             float4 frag (Interpolators i) : SV_Target
             {
-                // Data types in shaders implicit cast from a float to a float4 automatically through swizzling.
+                // Offset based on the vertical. As we increase our value in x, we apply a y value
+                // float xOffset = i.uv.y;
 
-                // Triangle wave using absolute value
-                // float t = abs(frac(i.uv.x * 5) * 2 - 1);
+                // Zigzag wave
+                float xOffset = cos(i.uv.y * TAU * 8 ) * 0.1;
                 
-                // Cosine wave
-                float t = cos(i.uv.x * 25);
+                // Backgammon-like pattern
+                // float t = cos(i.uv.x * TAU * 5) * 0.5 + xOffset;
                 
-                // Sine wave
-                // float t = sin(i.uv.x * 25);
-
+                // Diagonal pattern - taking the x coordinates and adding a vertical
+                float t = cos((i.uv.x + xOffset)* TAU * 5) * 0.5 + 0.5;
+                
                 return t;
-                
-                // float2 t = cos(i.uv.xy * TAU * 2) * 0.5 + 0.5;
-                // return float4(t,0,1);
                 
             }
             ENDCG

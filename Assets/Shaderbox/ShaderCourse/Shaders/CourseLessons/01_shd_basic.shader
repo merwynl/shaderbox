@@ -1,4 +1,4 @@
-Shader "Unlit/shd_basic"
+Shader "ShaderCourse/shd_basic"
 {
     Properties // 入力データ
     {
@@ -6,17 +6,21 @@ Shader "Unlit/shd_basic"
     }
     SubShader
     {
+        // subshader tags
+        
         Tags { "RenderType"="Opaque" }
         
         Pass
         {
+            // pass tags
+            // Everything outside the CG tags are shaderlabs
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
 
             #include "UnityCG.cginc"
 
-            // Defining the float variable specified in the properties
+            // Defining properties as variables within the code
             float _FloatValue;
             
 

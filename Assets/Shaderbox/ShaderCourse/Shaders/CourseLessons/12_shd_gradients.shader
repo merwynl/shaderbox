@@ -1,4 +1,4 @@
-Shader"Unlit/shd_gradients"
+Shader"ShaderCourse/shd_gradients"
 {
     Properties // 入力データ
     {

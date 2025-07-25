@@ -1,4 +1,4 @@
-Shader"Unlit/shd_basic_color_normal_world_space_frag"
+Shader"ShaderCourse/shd_basic_color_normal_world_space_frag"
 {
     Properties // 入力データ
     {

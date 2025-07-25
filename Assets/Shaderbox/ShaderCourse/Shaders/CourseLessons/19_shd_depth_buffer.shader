@@ -1,4 +1,4 @@
-Shader"ShaderCourse/shd_waves"
+Shader"ShaderCourse/shd_depth_buffer_testing"
 {
     Properties // 入力データ
     {
@@ -9,10 +9,28 @@ Shader"ShaderCourse/shd_waves"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags {
+            "RenderType"="Transparent" // Informs the render pipeline of what type of material. Does not change sorting
+            "Queue" = "Transparent" // Changes render order - skybox, opaque, transparent, overlay
+        }
         
         Pass
         {
+            // Culling
+            Cull Off // Enable double side
+            // Cull Back // Cull back faces
+            // Cull Front // Flips face normals
+            
+            // Depth buffer stuff
+            ZWrite Off
+            // ZTest LEqual // If the depth <= depth buffer show it, else don't
+            // ZTest GEqual // If the depth >= depth buffer show it, else don't
+            ZTest Always // Always draws, ignores zbuffer.
+            
+            // Blending modes
+            Blend One One // Additive blend mode
+            // Blend DstColor Zero // Multip
+            
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -52,21 +70,23 @@ Shader"ShaderCourse/shd_waves"
             
             float4 frag (Interpolators i) : SV_Target
             {
-                // Data types in shaders implicit cast from a float to a float4 automatically through swizzling.
+                // Zigzag wave
+                float xOffset = cos(i.uv.x * TAU * 8 ) * 0.01;
+                
+                // Adding _Time to pattern
+                float t = cos((i.uv.y + xOffset - _Time.y * 0.1)* TAU * 5) * 0.5 + 0.5;
 
-                // Triangle wave using absolute value
-                // float t = abs(frac(i.uv.x * 5) * 2 - 1);
-                
-                // Cosine wave
-                float t = cos(i.uv.x * 25);
-                
-                // Sine wave
-                // float t = sin(i.uv.x * 25);
+                // Multiplies the wave pattern by a vertical gradient
+                t *= 1-i.uv.y;
 
-                return t;
+                // Hack to remove top & bottom faces from a mesh. e.g cylinders end caps
+                 float capRemover = t * (abs( i.normal.y) < 0.999);
+
+                float waves = t * capRemover;
+
+                float4 gradient = lerp(_Color_A, _Color_B, i.uv.y);
                 
-                // float2 t = cos(i.uv.xy * TAU * 2) * 0.5 + 0.5;
-                // return float4(t,0,1);
+                return gradient * waves;
                 
             }
             ENDCG
