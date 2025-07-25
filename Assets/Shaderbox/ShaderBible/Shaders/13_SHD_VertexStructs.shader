@@ -46,18 +46,18 @@ Shader "ShaderBox/Unlit/13_SHD_VertexStructs"
             struct interpolators
             {
                 float4 vertex : SV_POSITION; //sv - system value
-                float2 uv : TEXCOORD0;
-                float2 tangentWorld : TEXCOORD1;
-                float2 binormalWorld : TEXCOORD2;
-                float2 normalWorld : TEXCOORD3;
-                float2 vertColor : COLOR0;
+                // float2 uv : TEXCOORD0;
+                // float2 tangentWorld : TEXCOORD1;
+                // float2 binormalWorld : TEXCOORD2;
+                // float2 normalWorld : TEXCOORD3;
+                // float2 vertColor : COLOR0;
             };
             
             interpolators vert (meshdata v)
             {
                 interpolators o;
                 o.vertex = UnityObjectToClipPos(v.vertex); // Verts stored in object space transformed into clip space
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                // o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 return o;
             }
             
@@ -69,6 +69,6 @@ Shader "ShaderBox/Unlit/13_SHD_VertexStructs"
             
             ENDCG
         }
-    }
+    } Fallback "ShaderPath"
 }
 
