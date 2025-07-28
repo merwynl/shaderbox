@@ -1980,7 +1980,7 @@
     "m_Title": "Using the a dot product node to create a fresnel effect. Brightest surface area will be view direction and gets darker as it turns away from the view vector",
     "m_Position": {
         "x": -3058.0,
-        "y": 691.0001220703125
+        "y": 691.0000610351563
     }
 }
 
@@ -2814,8 +2814,8 @@
     "m_ObjectId": "792937a3c59c4e558ef042c34f76c902",
     "m_Title": "Manually calculating the dot product",
     "m_Position": {
-        "x": -3073.99951171875,
-        "y": 2936.00048828125
+        "x": -3073.999755859375,
+        "y": 2936.0
     }
 }
 
@@ -3108,7 +3108,7 @@
     "m_ObjectId": "88149ea97701465caba272b258825110",
     "m_Title": "Using a dot product to channel isolate",
     "m_Position": {
-        "x": -3045.99951171875,
+        "x": -3046.0,
         "y": 2198.0
     }
 }
@@ -3474,8 +3474,8 @@
     "m_ObjectId": "9c433b3eee5c499c8f7a18ede81e8aab",
     "m_Title": "Fresnel using a dot product",
     "m_Position": {
-        "x": -2969.99951171875,
-        "y": -412.0001220703125
+        "x": -2970.0,
+        "y": -412.0
     }
 }
 
@@ -3486,7 +3486,7 @@
     "m_Title": "Fresnel using a dot product",
     "m_Position": {
         "x": -3007.0,
-        "y": 153.0
+        "y": 153.0001220703125
     }
 }
 
@@ -4001,7 +4001,7 @@
     "m_Title": "Using Magic number corresponding to perceptual weighting or perceived luminance and a dot product to desaturate a colour",
     "m_Position": {
         "x": -3047.0,
-        "y": 1463.0
+        "y": 1463.0001220703125
     }
 }
 
