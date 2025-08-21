@@ -4883,7 +4883,7 @@
     "m_Title": "Whiteout - Ruby Whiteout Demo - Adds very minor improvement to the detail normal - 5 more instructions than UDN method",
     "m_Position": {
         "x": -5622.0,
-        "y": 3788.999755859375
+        "y": 3789.0
     }
 }
 
@@ -7981,7 +7981,7 @@
     "m_ObjectId": "a1a82060830c49bb84ae74eec56fdccb",
     "m_Title": "Simple normal blend by adding two normal maps and appending  a blue channel value",
     "m_Position": {
-        "x": -5443.99951171875,
+        "x": -5444.0,
         "y": 1504.0
     }
 }
@@ -9925,9 +9925,9 @@
     "m_ShaderOutputName": "BaseColor",
     "m_StageCapability": 2,
     "m_Value": {
-        "x": 0.10000000149011612,
-        "y": 0.10000000149011612,
-        "z": 0.10000000149011612
+        "x": 0.30000001192092898,
+        "y": 0.30000001192092898,
+        "z": 0.30000001192092898
     },
     "m_DefaultValue": {
         "x": 0.5,
@@ -11455,8 +11455,8 @@
     "m_ObjectId": "ea3ba5ed8ecc49c5a4a471c2b8e4a95e",
     "m_Title": "Simple normal blend by adding two normal maps and appending the channel value from the base normal texture - 6 more instructions https://blog.selfshadow.com/publications/blending-in-detail/",
     "m_Position": {
-        "x": -5499.99951171875,
-        "y": 2419.999755859375
+        "x": -5500.0,
+        "y": 2420.0
     }
 }
 
@@ -12341,7 +12341,7 @@
     "m_ObjectId": "fd5688276c9e4ffabc2b34b83df5ced7",
     "m_Title": "Default uses whiteout method",
     "m_Position": {
-        "x": -3977.00048828125,
+        "x": -3977.0,
         "y": 4281.0
     }
 }

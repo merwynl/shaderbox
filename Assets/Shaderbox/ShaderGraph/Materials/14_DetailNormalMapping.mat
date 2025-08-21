@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 14_DetailNormalMapping
-  m_Shader: {fileID: -6465566751694194690, guid: 7995c069b4f92f74c9c33fe78adac462, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 5c785f3cc7469ec40a4a86fae50742c6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -77,8 +77,20 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_0332294bcf364492aa3c7e09ec5f4d20_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: e42351d16c4c6e447822700e7e5d0166, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_2367eae70b664e00a27cb7820c777035_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 620eea2753a06f94bad6483ee24b944a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_247a6de0daf8456c9879b4bee3dca6a7_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 9ae8800383113214594d5344db5065e0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_2a8d485f156f4e2186df659961dd8bde_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 31be6470ebdc5cd43b4cf7da35424db7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_5eb3299671114539b2a7578b2d2f37fc_Texture_1_Texture2D:
