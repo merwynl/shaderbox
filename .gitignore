@@ -79,22 +79,10 @@ crashlytics-build.properties
 # Sample Files
 Assets/AmplifyShaderEditor
 Assets/AmplifyShaderPack
-Assets/Coloso
-/Assets/Shader Course/
-/Assets/Shader Course.meta
-Assets/UnityShaderBible/Resources/
-Assets/UnityShaderBible/Resources.meta
-Assets/Jettelly Assets/
-Assets/JettellyCommon
-Assets/Jettelly Books
 Assets/Samples
 Assets/TextMesh Pro
 Assets/AmplifyShaderEditor.meta
 Assets/AmplifyShaderPack.meta
-Assets/Jettelly Assets.meta
-Assets/JettellyCommon.meta
-Assets/Jettelly Books.meta
 Assets/Samples.meta
 Assets/TextMesh Pro.meta
-Assets/UnityShaderBible.meta
-Assets/Coloso.meta
+
