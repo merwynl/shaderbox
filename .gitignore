@@ -77,10 +77,12 @@ crashlytics-build.properties
 *.plastic
 
 # Sample Files
+Assets/AmplifyOcclusion
 Assets/AmplifyShaderEditor
 Assets/AmplifyShaderPack
 Assets/Samples
 Assets/TextMesh Pro
+Assets/AmplifyOcclusion.meta
 Assets/AmplifyShaderEditor.meta
 Assets/AmplifyShaderPack.meta
 Assets/Samples.meta
