@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 826d6d20b9696f943893582909963c3d
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _IcicleMask: {fileID: 2800000, guid: fca4b20ecc45196489dbe9905bad49d4, type: 3}
+  - _IceTexture2: {fileID: 2800000, guid: cb72bc7c9ae63c248a0f59b5f0feef62, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
