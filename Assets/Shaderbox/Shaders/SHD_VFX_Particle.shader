@@ -304,7 +304,20 @@ Shader "Basic/VFX/ParticleBasic"
 			sampler2D _MainTex1;
 
 
+			inline float4 ASE_ComputeGrabScreenPos( float4 pos )
+			{
+				#if UNITY_UV_STARTS_AT_TOP
+				float scale = -1.0;
+				#else
+				float scale = 1.0;
+				#endif
+				float4 o = pos;
+				o.y = pos.w * 0.5f;
+				o.y = ( pos.y - o.y ) * _ProjectionParams.x * scale + o.y;
+				return o;
+			}
 			
+
 			PackedVaryings VertexFunction( Attributes input  )
 			{
 				PackedVaryings output = (PackedVaryings)0;
@@ -314,12 +327,11 @@ Shader "Basic/VFX/ParticleBasic"
 
 				output.ase_color = input.ase_color;
 				output.ase_texcoord3.xy = input.ase_texcoord.xy;
-				output.ase_texcoord4.xyz = input.ase_texcoord2.xyz;
+				output.ase_texcoord4 = input.ase_texcoord2;
 				output.ase_texcoord5 = input.ase_texcoord1;
 				
 				//setting value to unused interpolator channels and avoid initialization warnings
 				output.ase_texcoord3.zw = 0;
-				output.ase_texcoord4.w = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = input.positionOS.xyz;
@@ -494,9 +506,10 @@ Shader "Basic/VFX/ParticleBasic"
 				float4 temp_output_2_0_g1 = input.ase_color;
 				float2 uv_MainTex1 = input.ase_texcoord3.xy * _MainTex1_ST.xy + _MainTex1_ST.zw;
 				float4 tex2DNode13 = tex2D( _MainTex1, uv_MainTex1 );
-				float3 texCoord91 = input.ase_texcoord4.xyz;
-				texCoord91.xy = input.ase_texcoord4.xyz.xy * float2( 1,1 ) + float2( 0,0 );
-				float3 lerpResult86 = lerp( ( (temp_output_2_0_g1).rgb * tex2DNode13.r ) , texCoord91 , tex2DNode13.b);
+				float4 texCoord91 = input.ase_texcoord4;
+				texCoord91.xy = input.ase_texcoord4.xy * float2( 1,1 ) + float2( 0,0 );
+				float4 temp_output_2_0_g2 = texCoord91;
+				float3 lerpResult86 = lerp( ( (temp_output_2_0_g1).rgb * tex2DNode13.r ) , (temp_output_2_0_g2).xyz , ( (temp_output_2_0_g2).w * tex2DNode13.b ));
 				float3 texCoord84 = input.ase_texcoord5.xyz;
 				texCoord84.xy = input.ase_texcoord5.xyz.xy * float2( 1,1 ) + float2( 0,0 );
 				float3 _albedo15 = ( lerpResult86 * texCoord84.z );
@@ -511,9 +524,11 @@ Shader "Basic/VFX/ParticleBasic"
 				float lerpResult27 = lerp( ( -1.0 + temp_output_39_0 ) , ( 1.0 - temp_output_39_0 ) , saturate( texCoord50.x ));
 				float smoothstepResult34 = smoothstep( lerpResult36 , ( 1.0 - lerpResult36 ) , saturate( ( tex2DNode58.a - ( ( 1.0 - tex2DNode58.g ) + lerpResult27 ) ) ));
 				float depthEye95 = SHADERGRAPH_SAMPLE_SCENE_DEPTH( ScreenPosNorm.xy ) * ( _ProjectionParams.z - _ProjectionParams.y );
+				float4 ase_grabScreenPos = ASE_ComputeGrabScreenPos( ScreenPos );
+				float4 ase_grabScreenPosNorm = ase_grabScreenPos / ase_grabScreenPos.w;
 				float4 texCoord99 = input.ase_texcoord5;
 				texCoord99.xy = input.ase_texcoord5.xy * float2( 1,1 ) + float2( 0,0 );
-				float _alpha21 = ( input.ase_color.a * ( smoothstepResult34 * saturate( ( ( depthEye95 - ScreenPos.w ) / texCoord99.w ) ) ) );
+				float _alpha21 = ( input.ase_color.a * ( smoothstepResult34 * saturate( ( ( depthEye95 - ase_grabScreenPosNorm.a ) / texCoord99.w ) ) ) );
 				
 				float3 BakedAlbedo = 0;
 				float3 BakedEmission = 0;
@@ -683,7 +698,20 @@ Shader "Basic/VFX/ParticleBasic"
 			sampler2D _MainTex1;
 
 
+			inline float4 ASE_ComputeGrabScreenPos( float4 pos )
+			{
+				#if UNITY_UV_STARTS_AT_TOP
+				float scale = -1.0;
+				#else
+				float scale = 1.0;
+				#endif
+				float4 o = pos;
+				o.y = pos.w * 0.5f;
+				o.y = ( pos.y - o.y ) * _ProjectionParams.x * scale + o.y;
+				return o;
+			}
 			
+
 			PackedVaryings VertexFunction( Attributes input  )
 			{
 				PackedVaryings output = (PackedVaryings)0;
@@ -828,9 +856,11 @@ Shader "Basic/VFX/ParticleBasic"
 				float lerpResult27 = lerp( ( -1.0 + temp_output_39_0 ) , ( 1.0 - temp_output_39_0 ) , saturate( texCoord50.x ));
 				float smoothstepResult34 = smoothstep( lerpResult36 , ( 1.0 - lerpResult36 ) , saturate( ( tex2DNode58.a - ( ( 1.0 - tex2DNode58.g ) + lerpResult27 ) ) ));
 				float depthEye95 = SHADERGRAPH_SAMPLE_SCENE_DEPTH( ScreenPosNorm.xy ) * ( _ProjectionParams.z - _ProjectionParams.y );
+				float4 ase_grabScreenPos = ASE_ComputeGrabScreenPos( ScreenPos );
+				float4 ase_grabScreenPosNorm = ase_grabScreenPos / ase_grabScreenPos.w;
 				float4 texCoord99 = input.ase_texcoord;
 				texCoord99.xy = input.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float _alpha21 = ( input.ase_color.a * ( smoothstepResult34 * saturate( ( ( depthEye95 - ScreenPos.w ) / texCoord99.w ) ) ) );
+				float _alpha21 = ( input.ase_color.a * ( smoothstepResult34 * saturate( ( ( depthEye95 - ase_grabScreenPosNorm.a ) / texCoord99.w ) ) ) );
 				
 
 				float Alpha = _alpha21;
@@ -943,7 +973,20 @@ Shader "Basic/VFX/ParticleBasic"
 			sampler2D _MainTex1;
 
 
+			inline float4 ASE_ComputeGrabScreenPos( float4 pos )
+			{
+				#if UNITY_UV_STARTS_AT_TOP
+				float scale = -1.0;
+				#else
+				float scale = 1.0;
+				#endif
+				float4 o = pos;
+				o.y = pos.w * 0.5f;
+				o.y = ( pos.y - o.y ) * _ProjectionParams.x * scale + o.y;
+				return o;
+			}
 			
+
 			int _ObjectId;
 			int _PassValue;
 
@@ -1097,9 +1140,11 @@ Shader "Basic/VFX/ParticleBasic"
 				float4 ase_positionSSNorm = screenPos / screenPos.w;
 				ase_positionSSNorm.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_positionSSNorm.z : ase_positionSSNorm.z * 0.5 + 0.5;
 				float depthEye95 = SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_positionSSNorm.xy ) * ( _ProjectionParams.z - _ProjectionParams.y );
+				float4 ase_grabScreenPos = ASE_ComputeGrabScreenPos( screenPos );
+				float4 ase_grabScreenPosNorm = ase_grabScreenPos / ase_grabScreenPos.w;
 				float4 texCoord99 = input.ase_texcoord;
 				texCoord99.xy = input.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float _alpha21 = ( input.ase_color.a * ( smoothstepResult34 * saturate( ( ( depthEye95 - screenPos.w ) / texCoord99.w ) ) ) );
+				float _alpha21 = ( input.ase_color.a * ( smoothstepResult34 * saturate( ( ( depthEye95 - ase_grabScreenPosNorm.a ) / texCoord99.w ) ) ) );
 				
 
 				surfaceDescription.Alpha = _alpha21;
@@ -1205,7 +1250,20 @@ Shader "Basic/VFX/ParticleBasic"
 			sampler2D _MainTex1;
 
 
+			inline float4 ASE_ComputeGrabScreenPos( float4 pos )
+			{
+				#if UNITY_UV_STARTS_AT_TOP
+				float scale = -1.0;
+				#else
+				float scale = 1.0;
+				#endif
+				float4 o = pos;
+				o.y = pos.w * 0.5f;
+				o.y = ( pos.y - o.y ) * _ProjectionParams.x * scale + o.y;
+				return o;
+			}
 			
+
 			float4 _SelectionID;
 
 			struct SurfaceDescription
@@ -1358,9 +1416,11 @@ Shader "Basic/VFX/ParticleBasic"
 				float4 ase_positionSSNorm = screenPos / screenPos.w;
 				ase_positionSSNorm.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_positionSSNorm.z : ase_positionSSNorm.z * 0.5 + 0.5;
 				float depthEye95 = SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_positionSSNorm.xy ) * ( _ProjectionParams.z - _ProjectionParams.y );
+				float4 ase_grabScreenPos = ASE_ComputeGrabScreenPos( screenPos );
+				float4 ase_grabScreenPosNorm = ase_grabScreenPos / ase_grabScreenPos.w;
 				float4 texCoord99 = input.ase_texcoord;
 				texCoord99.xy = input.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float _alpha21 = ( input.ase_color.a * ( smoothstepResult34 * saturate( ( ( depthEye95 - screenPos.w ) / texCoord99.w ) ) ) );
+				float _alpha21 = ( input.ase_color.a * ( smoothstepResult34 * saturate( ( ( depthEye95 - ase_grabScreenPosNorm.a ) / texCoord99.w ) ) ) );
 				
 
 				surfaceDescription.Alpha = _alpha21;
@@ -1484,7 +1544,20 @@ Shader "Basic/VFX/ParticleBasic"
 			sampler2D _MainTex1;
 
 
+			inline float4 ASE_ComputeGrabScreenPos( float4 pos )
+			{
+				#if UNITY_UV_STARTS_AT_TOP
+				float scale = -1.0;
+				#else
+				float scale = 1.0;
+				#endif
+				float4 o = pos;
+				o.y = pos.w * 0.5f;
+				o.y = ( pos.y - o.y ) * _ProjectionParams.x * scale + o.y;
+				return o;
+			}
 			
+
 			struct SurfaceDescription
 			{
 				float Alpha;
@@ -1650,9 +1723,11 @@ Shader "Basic/VFX/ParticleBasic"
 				float lerpResult27 = lerp( ( -1.0 + temp_output_39_0 ) , ( 1.0 - temp_output_39_0 ) , saturate( texCoord50.x ));
 				float smoothstepResult34 = smoothstep( lerpResult36 , ( 1.0 - lerpResult36 ) , saturate( ( tex2DNode58.a - ( ( 1.0 - tex2DNode58.g ) + lerpResult27 ) ) ));
 				float depthEye95 = SHADERGRAPH_SAMPLE_SCENE_DEPTH( ScreenPosNorm.xy ) * ( _ProjectionParams.z - _ProjectionParams.y );
+				float4 ase_grabScreenPos = ASE_ComputeGrabScreenPos( ScreenPos );
+				float4 ase_grabScreenPosNorm = ase_grabScreenPos / ase_grabScreenPos.w;
 				float4 texCoord99 = input.ase_texcoord1;
 				texCoord99.xy = input.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float _alpha21 = ( input.ase_color.a * ( smoothstepResult34 * saturate( ( ( depthEye95 - ScreenPos.w ) / texCoord99.w ) ) ) );
+				float _alpha21 = ( input.ase_color.a * ( smoothstepResult34 * saturate( ( ( depthEye95 - ase_grabScreenPosNorm.a ) / texCoord99.w ) ) ) );
 				
 
 				float Alpha = _alpha21;
@@ -1814,7 +1889,20 @@ Shader "Basic/VFX/ParticleBasic"
 			sampler2D _MainTex1;
 
 
+			inline float4 ASE_ComputeGrabScreenPos( float4 pos )
+			{
+				#if UNITY_UV_STARTS_AT_TOP
+				float scale = -1.0;
+				#else
+				float scale = 1.0;
+				#endif
+				float4 o = pos;
+				o.y = pos.w * 0.5f;
+				o.y = ( pos.y - o.y ) * _ProjectionParams.x * scale + o.y;
+				return o;
+			}
 			
+
 			PackedVaryings VertexFunction( Attributes input  )
 			{
 				PackedVaryings output = (PackedVaryings)0;
@@ -1899,9 +1987,11 @@ Shader "Basic/VFX/ParticleBasic"
 				float smoothstepResult34 = smoothstep( lerpResult36 , ( 1.0 - lerpResult36 ) , saturate( ( tex2DNode58.a - ( ( 1.0 - tex2DNode58.g ) + lerpResult27 ) ) ));
 				float depthEye95 = SHADERGRAPH_SAMPLE_SCENE_DEPTH( ScreenPosNorm.xy ) * ( _ProjectionParams.z - _ProjectionParams.y );
 				float4 screenPos = input.ase_texcoord5;
+				float4 ase_grabScreenPos = ASE_ComputeGrabScreenPos( screenPos );
+				float4 ase_grabScreenPosNorm = ase_grabScreenPos / ase_grabScreenPos.w;
 				float4 texCoord99 = input.ase_texcoord3;
 				texCoord99.xy = input.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				float _alpha21 = ( input.ase_color.a * ( smoothstepResult34 * saturate( ( ( depthEye95 - screenPos.w ) / texCoord99.w ) ) ) );
+				float _alpha21 = ( input.ase_color.a * ( smoothstepResult34 * saturate( ( ( depthEye95 - ase_grabScreenPosNorm.a ) / texCoord99.w ) ) ) );
 				
 
 				float Alpha = _alpha21;
@@ -2082,7 +2172,20 @@ Shader "Basic/VFX/ParticleBasic"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/UnityGBuffer.hlsl"
 			#endif
 
+			inline float4 ASE_ComputeGrabScreenPos( float4 pos )
+			{
+				#if UNITY_UV_STARTS_AT_TOP
+				float scale = -1.0;
+				#else
+				float scale = 1.0;
+				#endif
+				float4 o = pos;
+				o.y = pos.w * 0.5f;
+				o.y = ( pos.y - o.y ) * _ProjectionParams.x * scale + o.y;
+				return o;
+			}
 			
+
 			PackedVaryings VertexFunction( Attributes input  )
 			{
 				PackedVaryings output = (PackedVaryings)0;
@@ -2092,12 +2195,11 @@ Shader "Basic/VFX/ParticleBasic"
 
 				output.ase_color = input.ase_color;
 				output.ase_texcoord3.xy = input.ase_texcoord.xy;
-				output.ase_texcoord4.xyz = input.ase_texcoord2.xyz;
+				output.ase_texcoord4 = input.ase_texcoord2;
 				output.ase_texcoord5 = input.ase_texcoord1;
 				
 				//setting value to unused interpolator channels and avoid initialization warnings
 				output.ase_texcoord3.zw = 0;
-				output.ase_texcoord4.w = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = input.positionOS.xyz;
@@ -2250,9 +2352,10 @@ Shader "Basic/VFX/ParticleBasic"
 				float4 temp_output_2_0_g1 = input.ase_color;
 				float2 uv_MainTex1 = input.ase_texcoord3.xy * _MainTex1_ST.xy + _MainTex1_ST.zw;
 				float4 tex2DNode13 = tex2D( _MainTex1, uv_MainTex1 );
-				float3 texCoord91 = input.ase_texcoord4.xyz;
-				texCoord91.xy = input.ase_texcoord4.xyz.xy * float2( 1,1 ) + float2( 0,0 );
-				float3 lerpResult86 = lerp( ( (temp_output_2_0_g1).rgb * tex2DNode13.r ) , texCoord91 , tex2DNode13.b);
+				float4 texCoord91 = input.ase_texcoord4;
+				texCoord91.xy = input.ase_texcoord4.xy * float2( 1,1 ) + float2( 0,0 );
+				float4 temp_output_2_0_g2 = texCoord91;
+				float3 lerpResult86 = lerp( ( (temp_output_2_0_g1).rgb * tex2DNode13.r ) , (temp_output_2_0_g2).xyz , ( (temp_output_2_0_g2).w * tex2DNode13.b ));
 				float3 texCoord84 = input.ase_texcoord5.xyz;
 				texCoord84.xy = input.ase_texcoord5.xyz.xy * float2( 1,1 ) + float2( 0,0 );
 				float3 _albedo15 = ( lerpResult86 * texCoord84.z );
@@ -2267,9 +2370,11 @@ Shader "Basic/VFX/ParticleBasic"
 				float lerpResult27 = lerp( ( -1.0 + temp_output_39_0 ) , ( 1.0 - temp_output_39_0 ) , saturate( texCoord50.x ));
 				float smoothstepResult34 = smoothstep( lerpResult36 , ( 1.0 - lerpResult36 ) , saturate( ( tex2DNode58.a - ( ( 1.0 - tex2DNode58.g ) + lerpResult27 ) ) ));
 				float depthEye95 = SHADERGRAPH_SAMPLE_SCENE_DEPTH( ScreenPosNorm.xy ) * ( _ProjectionParams.z - _ProjectionParams.y );
+				float4 ase_grabScreenPos = ASE_ComputeGrabScreenPos( ScreenPos );
+				float4 ase_grabScreenPosNorm = ase_grabScreenPos / ase_grabScreenPos.w;
 				float4 texCoord99 = input.ase_texcoord5;
 				texCoord99.xy = input.ase_texcoord5.xy * float2( 1,1 ) + float2( 0,0 );
-				float _alpha21 = ( input.ase_color.a * ( smoothstepResult34 * saturate( ( ( depthEye95 - ScreenPos.w ) / texCoord99.w ) ) ) );
+				float _alpha21 = ( input.ase_color.a * ( smoothstepResult34 * saturate( ( ( depthEye95 - ase_grabScreenPosNorm.a ) / texCoord99.w ) ) ) );
 				
 
 				float3 Color = _albedo15;
@@ -2342,43 +2447,46 @@ Node;AmplifyShaderEditor.SimpleMultiplyOpNode, AmplifyShaderEditor, Version=0.0.
 Node;AmplifyShaderEditor.SaturateNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;42;-2832,432;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;40;-2832,208;Inherit;False;2;2;0;FLOAT;-1;False;1;FLOAT;-1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleSubtractOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;41;-2832,336;Inherit;False;2;0;FLOAT;1;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.CommentaryNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;102;-1666,686;Inherit;False;965.6564;560.4731;Soft Particle Factor;7;103;101;100;99;96;95;98;;1,1,1,1;0;0
+Node;AmplifyShaderEditor.CommentaryNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;102;-1666,686;Inherit;False;965.6564;560.4731;Soft Particle Factor;8;103;101;100;99;96;95;98;108;;1,1,1,1;0;0
 Node;AmplifyShaderEditor.CommentaryNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;44;-2672,672;Inherit;False;836;346.9;Dissolve sharpness;4;37;36;38;47;;1,1,1,1;0;0
 Node;AmplifyShaderEditor.LerpOp, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;27;-2656,336;Inherit;True;3;0;FLOAT;-1;False;1;FLOAT;1;False;2;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.OneMinusNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;24;-2656,224;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.CommentaryNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;30;-2912,-640;Inherit;False;633.3201;298.7;_MainTex;2;14;13;_MainTex;1,1,1,1;0;0
-Node;AmplifyShaderEditor.CommentaryNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;31;-3040,-1136;Inherit;False;548;258.75;MainColor;2;17;19;MainColor;1,1,1,1;0;0
+Node;AmplifyShaderEditor.CommentaryNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;30;-3216,-816;Inherit;False;633.3201;298.7;_MainTex;2;14;13;_MainTex;1,1,1,1;0;0
+Node;AmplifyShaderEditor.CommentaryNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;31;-3040,-1136;Inherit;False;750;268.0834;MainColor;3;18;19;17;MainColor;1,1,1,1;0;0
 Node;AmplifyShaderEditor.SimpleAddOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;26;-2400,224;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SamplerNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;58;-3040,-48;Inherit;True;Property;_MainTex2;_MainTex;0;0;Create;True;0;0;0;False;0;False;-1;5bcc3fa406567423dbe4c1607c6cdf44;6aed33ef7c1cfbd45bed044fc7466b9b;True;0;False;white;Auto;False;Instance;13;Auto;Texture2D;False;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.TextureCoordinatesNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;47;-2608,736;Inherit;False;1;-1;3;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.ScreenPosInputsNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;98;-1600,864;Float;False;1;False;0;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.ScreenDepthNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;95;-1616,736;Inherit;False;2;1;0;FLOAT4;0,0,0,0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.TexturePropertyNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;14;-2848,-592;Inherit;True;Property;_MainTex1;_MainTex;0;0;Create;False;0;0;0;False;0;False;3eac090ae686846249173be5a404d88f;3eac090ae686846249173be5a404d88f;False;white;Auto;Texture2D;False;-1;0;2;SAMPLER2D;0;SAMPLERSTATE;1
+Node;AmplifyShaderEditor.GrabScreenPosition, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;108;-1616,1040;Inherit;False;0;0;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.VertexColorNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;17;-2976,-1088;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SaturateNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;37;-2400,784;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleSubtractOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;23;-2144,192;Inherit;True;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.TexturePropertyNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;14;-3152,-768;Inherit;True;Property;_MainTex1;_MainTex;0;0;Create;False;0;0;0;False;0;False;3eac090ae686846249173be5a404d88f;3eac090ae686846249173be5a404d88f;False;white;Auto;Texture2D;False;-1;0;2;SAMPLER2D;0;SAMPLERSTATE;1
+Node;AmplifyShaderEditor.CommentaryNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;94;-2048,-1232;Inherit;False;1397.333;400.8;Secondary Colour;6;82;84;86;105;91;107;;1,1,1,1;0;0
 Node;AmplifyShaderEditor.SimpleSubtractOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;96;-1376,736;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;1;False;1;FLOAT;0
-Node;AmplifyShaderEditor.TextureCoordinatesNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;99;-1472,1040;Inherit;False;1;-1;4;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.CommentaryNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;94;-2066,-658;Inherit;False;1092;394.8;Secondary Colour;4;86;84;82;91;;1,1,1,1;0;0
-Node;AmplifyShaderEditor.SamplerNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;13;-2576,-576;Inherit;True;Property;_MainTex;_MainTex;0;0;Create;True;0;0;0;False;0;False;-1;5bcc3fa406567423dbe4c1607c6cdf44;6aed33ef7c1cfbd45bed044fc7466b9b;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;False;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
-Node;AmplifyShaderEditor.FunctionNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;19;-2688,-1088;Inherit;False;Alpha Split;-1;;1;07dab7960105b86429ac8eebd729ed6d;0;1;2;COLOR;0,0,0,0;False;2;FLOAT3;0;FLOAT;6
+Node;AmplifyShaderEditor.TextureCoordinatesNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;99;-1280,928;Inherit;False;1;-1;4;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleSubtractOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;38;-2016,880;Inherit;False;2;0;FLOAT;1;False;1;FLOAT;1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.LerpOp, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;36;-2240,736;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0.5;False;2;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SaturateNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;33;-1904,192;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleDivideOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;100;-1184,736;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.CommentaryNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;93;-946,-130;Inherit;False;475.47;543.95;Alpha;2;20;71;;1,1,1,1;0;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;18;-2288,-1088;Inherit;True;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.TextureCoordinatesNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;91;-2016,-608;Inherit;False;2;-1;3;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SamplerNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;13;-2880,-752;Inherit;True;Property;_MainTex;_MainTex;0;0;Create;True;0;0;0;False;0;False;-1;5bcc3fa406567423dbe4c1607c6cdf44;6aed33ef7c1cfbd45bed044fc7466b9b;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;False;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
+Node;AmplifyShaderEditor.FunctionNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;19;-2688,-1088;Inherit;False;Alpha Split;-1;;1;07dab7960105b86429ac8eebd729ed6d;0;1;2;COLOR;0,0,0,0;False;2;FLOAT3;0;FLOAT;6
+Node;AmplifyShaderEditor.TextureCoordinatesNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;91;-2016,-1184;Inherit;False;2;-1;4;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SmoothstepOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;34;-1728,192;Inherit;True;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SaturateNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;101;-1040,736;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.LerpOp, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;86;-1680,-528;Inherit;True;3;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT;0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.TextureCoordinatesNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;84;-1392,-448;Inherit;False;1;-1;3;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.VertexColorNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;71;-896,-80;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;105;-1568,-1056;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;107;-1712,-1168;Inherit;False;Alpha Split;-1;;2;07dab7960105b86429ac8eebd729ed6d;0;1;2;FLOAT4;0,0,0,0;False;2;FLOAT3;0;FLOAT;6
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;18;-2480,-1008;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.CommentaryNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;93;-336,608;Inherit;False;491.47;321.2833;Alpha;2;20;71;;1,1,1,1;0;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;103;-864,720;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;1;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;82;-1152,-528;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;20;-704,160;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RegisterLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;15;-912,-528;Inherit;False;_albedo;-1;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.RegisterLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;21;-400,160;Inherit;False;_alpha;-1;True;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.LerpOp, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;86;-1360,-1104;Inherit;True;3;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT;0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.TextureCoordinatesNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;84;-1072,-1024;Inherit;False;1;-1;3;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.VertexColorNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;71;-304,720;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;82;-832,-1104;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;20;-96,688;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RegisterLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;15;-592,-1104;Inherit;False;_albedo;-1;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.RegisterLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;21;272,688;Inherit;False;_alpha;-1;True;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.ScreenPosInputsNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;98;-1616,848;Float;False;1;False;0;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.GetLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;16;640,-416;Inherit;False;15;_albedo;1;0;OBJECT;;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.GetLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;22;640,-336;Inherit;False;21;_alpha;1;0;OBJECT;;False;1;FLOAT;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;0;912,-416;Float;False;False;-1;3;UnityEditor.ShaderGraphUnlitGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;ExtraPrePass;0;0;ExtraPrePass;6;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;False;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Unlit;True;5;True;14;all;0;False;True;1;1;False;;0;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;False;True;0;False;False;0;;0;0;Standard;0;False;0
@@ -2408,25 +2516,28 @@ WireConnection;37;0;47;2
 WireConnection;23;0;58;4
 WireConnection;23;1;26;0
 WireConnection;96;0;95;0
-WireConnection;96;1;98;4
-WireConnection;13;0;14;0
-WireConnection;19;2;17;0
+WireConnection;96;1;108;4
 WireConnection;38;1;36;0
 WireConnection;36;2;37;0
 WireConnection;33;0;23;0
 WireConnection;100;0;96;0
 WireConnection;100;1;99;4
-WireConnection;18;0;19;0
-WireConnection;18;1;13;1
+WireConnection;13;0;14;0
+WireConnection;19;2;17;0
 WireConnection;34;0;33;0
 WireConnection;34;1;36;0
 WireConnection;34;2;38;0
 WireConnection;101;0;100;0
-WireConnection;86;0;18;0
-WireConnection;86;1;91;0
-WireConnection;86;2;13;3
+WireConnection;105;0;107;6
+WireConnection;105;1;13;3
+WireConnection;107;2;91;0
+WireConnection;18;0;19;0
+WireConnection;18;1;13;1
 WireConnection;103;0;34;0
 WireConnection;103;1;101;0
+WireConnection;86;0;18;0
+WireConnection;86;1;107;0
+WireConnection;86;2;105;0
 WireConnection;82;0;86;0
 WireConnection;82;1;84;3
 WireConnection;20;0;71;4
@@ -2436,4 +2547,4 @@ WireConnection;21;0;20;0
 WireConnection;1;2;16;0
 WireConnection;1;3;22;0
 ASEEND*/
-//CHKSM=03D094B7511C68256BB4B6D66EE812E55769F1B1
+//CHKSM=363C2CAED8EAF69540F4E2E1DF9F5058C8FC5520
