@@ -1,0 +1,181 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2535619123521938005
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 10
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_IceRefraction
+  m_Shader: {fileID: 4800000, guid: 10eb72021386d9841b77756de6ef60cc, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _SPECULARHIGHLIGHTS_OFF
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseAssetTexture:
+        m_Texture: {fileID: 2800000, guid: cb72bc7c9ae63c248a0f59b5f0feef62, type: 3}
+        m_Scale: {x: 2, y: 2}
+        m_Offset: {x: 0, y: 0}
+    - _BaseTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Bubble_Map1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Bubble_Map_2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Checker_BW:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrystalTexture:
+        m_Texture: {fileID: 2800000, guid: 1c615ec56bc10bf4f85763b93efbabce, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GroundIce:
+        m_Texture: {fileID: 2800000, guid: 8c557561675d44448a0f3c7c9a5056c2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Height_Map_3:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IceCrystals:
+        m_Texture: {fileID: 2800000, guid: 508b77760a01104469c47f517b0343f0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IceNoise:
+        m_Texture: {fileID: 2800000, guid: 6197da77867dbe143aee9b59b0566b9d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IceNormals:
+        m_Texture: {fileID: 2800000, guid: 1c615ec56bc10bf4f85763b93efbabce, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IceTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IceTexture2:
+        m_Texture: {fileID: 2800000, guid: cb72bc7c9ae63c248a0f59b5f0feef62, type: 3}
+        m_Scale: {x: 2, y: 2}
+        m_Offset: {x: 0, y: 0}
+    - _IceTilingNoiseStylized:
+        m_Texture: {fileID: 2800000, guid: cb72bc7c9ae63c248a0f59b5f0feef62, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Ice_Texture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IcicleMask:
+        m_Texture: {fileID: 2800000, guid: fca4b20ecc45196489dbe9905bad49d4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal_Map:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OffsetMask:
+        m_Texture: {fileID: 2800000, guid: 3bd4eccbb37c5af4fb95afe03776c037, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OffsetMask1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SmoothnessMap:
+        m_Texture: {fileID: 2800000, guid: 508b77760a01104469c47f517b0343f0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture0:
+        m_Texture: {fileID: 2800000, guid: 935a48e93c5bc3f40b87d85ecec8642d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _8: 5
+    - _AddPrecomputedVelocity: 1
+    - _Bubble_Mask_Power: 26.13
+    - _EnvironmentReflections: 1
+    - _Float0: 2.48
+    - _Fresnel: 2.85
+    - _FresnelPower: 2
+    - _FresnelPower1: 0.25
+    - _FresnelScale: 1
+    - _FresnelScale1: 3.34
+    - _FrostAmount: 3
+    - _IcicleMaskTile: 2.99
+    - _Inner_Color_power: 20
+    - _Normal_strength: 0
+    - _Pallarax_Amplitude_3: 0
+    - _Parallax_Amplitude_1: 0
+    - _Parallax_Amplitude_2: 0
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
+    - _Refract: 0
+    - _Refract1: 0.042
+    - _Refraction_Factor: 1
+    - _Smoothness: 0
+    - _SmoothnessMax: 0.2
+    - _SmoothnessMin: 1
+    - _SpecularHighlights: 0
+    - _TessMax: 25
+    - _TessMin: 10
+    - _TessValue: 16
+    - _UV_Offset_Depth: 0
+    m_Colors:
+    - _Bubble_Map_1_Tiling: {r: 0, g: 0, b: 0, a: 0}
+    - _Buble_Map_2_Tiling_Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Heigth_Map_3_Tiling: {r: 0, g: 0, b: 0, a: 0}
+    - _IceColor: {r: 0.19119605, g: 0.5814098, b: 0.96078426, a: 1}
+    - _IceColor1: {r: 0.17900002, g: 0.5936889, b: 1, a: 1}
+    - _Ice_Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Inner_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Master_Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Refraction_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

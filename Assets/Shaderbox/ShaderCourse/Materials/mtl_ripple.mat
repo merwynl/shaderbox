@@ -81,7 +81,7 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _Value: 0
-    - _WaveAmp: 0.02
+    - _WaveAmp: 0.195
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.18640976, g: 0.6698113, b: 0.3124467, a: 1}

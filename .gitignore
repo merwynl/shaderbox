@@ -77,14 +77,14 @@ crashlytics-build.properties
 *.plastic
 
 # Sample Files
-/Assets/Shader Course/
-/Assets/Shader Course.meta
-Assets/UnityShaderBible/Resources/
-Assets/UnityShaderBible/Resources.meta
-Assets/Jettelly Assets/
-Assets/JettellyCommon
-Assets/Jettelly Assets.meta
-Assets/JettellyCommon.meta
+Assets/AmplifyOcclusion
+Assets/AmplifyShaderEditor
+Assets/AmplifyShaderPack
+Assets/Samples
 Assets/TextMesh Pro
+Assets/AmplifyOcclusion.meta
+Assets/AmplifyShaderEditor.meta
+Assets/AmplifyShaderPack.meta
+Assets/Samples.meta
 Assets/TextMesh Pro.meta
-Assets/UnityShaderBible.meta
+

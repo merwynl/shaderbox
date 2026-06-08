@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-29227215725004372
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 9
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_VFX_Particles_Default
+  m_Shader: {fileID: 4800000, guid: 362657d67cb7f434aa29d1d29bf8e0ce, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _RECEIVE_SHADOWS_OFF
+  m_InvalidKeywords:
+  - _MAINRBGOFFSET_ON
+  - _MAINRISALPHA_ON
+  - _RECEIVESHADOWS_OFF
+  - _USEMANUAL_DEBUGDISSOLVE_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _ColorTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 0a19e25493e32394d8db7f92d0627e41, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaCutoff: 0.5
+    - _CDF: 0
+    - _CDFOffset: 0
+    - _CameraOffset: 0
+    - _Color90degreeUVFlip: 0
+    - _ColorClampX: 0
+    - _ColorClampY: 0
+    - _ColorFlowX: 0
+    - _ColorFlowY: 0
+    - _ColorIntensity: 0
+    - _ColorPower: 1
+    - _CullMode: 0
+    - _Desaturate: 0
+    - _DissolveFlowX: 0
+    - _DissolveFlowY: 0
+    - _FD: 0
+    - _Main90degreeUVFlip: 0
+    - _MainClampX: 0
+    - _MainClampY: 0
+    - _MainFlowX: 0
+    - _MainFlowY: 0
+    - _MainOffsetU: 0.015
+    - _MainOffsetV: 0.015
+    - _MainRBGOffset: 1
+    - _MainRIsAlpha: 1
+    - _MainTexDistortion: 0
+    - _MainTexRDissolve: 0
+    - _MainUVSwitch: 0
+    - _ManualDissolve: 1
+    - _MaskFlowX: 0
+    - _MaskFlowY: 0
+    - _NoiseAffectsXAxis: 0
+    - _NoiseAffectsYAxis: 0
+    - _NoiseFlowX: 0
+    - _NoiseFlowY: 0
+    - _OpacityPower: 1
+    - _OpacityStrength: 1
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _ReceiveShadows: 0
+    - _SmoothDissolve: 1
+    - _StylizeMainShape: 0
+    - _StylizeShape: 0.01
+    - _TextureIntensity: 1
+    - _UseColor: 0
+    - _UseCustom1YDistortion: 0
+    - _UseMainUVCustom1ZW: 0
+    - _UseManual_DebugDissolve: 1
+    - _UseNoise: 0
+    - _ZwriteMode: 0
+    m_Colors:
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
