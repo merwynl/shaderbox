@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_VFX_ParticleBasic
+  m_Name: M_VFX_Particle_DefaultAlphaBlend
   m_Shader: {fileID: 4800000, guid: 3f99ef558fc06e04b945504bcda7ad60, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -28,6 +28,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex1:
+        m_Texture: {fileID: 2800000, guid: 3eac090ae686846249173be5a404d88f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTexObj:
         m_Texture: {fileID: 2800000, guid: 3eac090ae686846249173be5a404d88f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
